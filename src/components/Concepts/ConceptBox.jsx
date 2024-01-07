@@ -1,6 +1,6 @@
-
 function ConceptBox({title, image, description}) {
 
+    
     return (
         <li className="concept">
             <img src={image} alt={title} />
