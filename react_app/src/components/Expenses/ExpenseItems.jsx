@@ -1,6 +1,6 @@
 import "./ExpenseItems.css"
 import ExpenseDate from "./ExpenseDate.jsx"
-import Card from "./Card.jsx"
+import Card from "../Shared/Card.jsx"
 
 function ExpenseItems({id, title, amount, date}) {
     

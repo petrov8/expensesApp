@@ -1,6 +1,6 @@
 import "./Expenses.css"
 import ExpenseItems from "./ExpenseItems.jsx"
-import Card from "./Card.jsx"
+import Card from "../Shared/Card.jsx"
 
 function Expenses() {
     const expenses = [
