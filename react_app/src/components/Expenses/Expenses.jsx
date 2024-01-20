@@ -1,11 +1,10 @@
 import "./Expenses.css"
 import ExpenseItems from "./ExpenseItems.jsx"
+import ExpenesesFilter from "./ExpensesFilter.jsx"
 import Card from "../Shared/Card.jsx"
+import {useState} from "react"
 
 function Expenses(props) {
-
-  console.log("This is expenses")
-  console.log(props.extraExpenses)
 
     const expenses = [
         {
@@ -29,11 +28,24 @@ function Expenses(props) {
         },
     ]
 
-    let expenseItems = expenses.map(
+    const [itemsToRender, setItemsToRender] = useState(expenses)
+
+
+    function yearSelectionHandler(yearChange){
+      let showItems = expenses.filter(
+        (entry) => new Date(entry.date).getFullYear() == yearChange)
+      setItemsToRender(showItems.length > 0 ? showItems : expenses)
+    }
+    
+
+    let expenseItems = itemsToRender.map(
         (listEntry, index)=><ExpenseItems key={listEntry.id}{...expenses[index]}/>)
+
+  
 
     return (
         <Card className="expenses">
+            <ExpenesesFilter onYearFilter={yearSelectionHandler}/>
             {expenseItems}
         </Card>
     )
