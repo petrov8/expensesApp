@@ -1,21 +1,22 @@
 import "./ExpensesFilter.css"
 
 
-function ExpensesFilter({onYearFilter}){
+function ExpensesFilter({onYearFilter, year}){
+
+    console.log(year)
 
     let currentYear = new Date().getFullYear()
     let dropdownOptions = composeYearOptions(currentYear, 5)
 
-    function filterSelHandler(event){
+    function changeYearHandler(event){
         onYearFilter(event.target.value)
     }
-
 
     return (
         <div className='expenses-filter'>
         <div className='expenses-filter__control'>
           <label>Filter by year</label>
-          <select onClick={filterSelHandler}>
+          <select value={year} onChange={changeYearHandler}  >
             {dropdownOptions}
           </select>
         </div>

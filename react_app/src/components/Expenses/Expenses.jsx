@@ -29,24 +29,20 @@ function Expenses(props) {
     ]
 
     const [itemsToRender, setItemsToRender] = useState(expenses)
+    const [selectedYear,  setSelectedYear] = useState("2024")
 
-
-    function yearSelectionHandler(yearChange){
-      let showItems = expenses.filter(
-        (entry) => new Date(entry.date).getFullYear() == yearChange)
-      setItemsToRender(showItems.length > 0 ? showItems : expenses)
+    function yearFilterHandler(selectedYear){
+      setSelectedYear(selectedYear)
+      let filteredExpenses = expenses.filter(
+        (entry) => new Date(entry.date).getFullYear() == selectedYear)
+      setItemsToRender(filteredExpenses.length > 0 ? filteredExpenses : expenses)
     }
-    
-
-    let expenseItems = itemsToRender.map(
-        (listEntry, index)=><ExpenseItems key={listEntry.id}{...expenses[index]}/>)
-
-  
 
     return (
         <Card className="expenses">
-            <ExpenesesFilter onYearFilter={yearSelectionHandler}/>
-            {expenseItems}
+            <ExpenesesFilter onYearFilter={yearFilterHandler} year={selectedYear}/>
+            {itemsToRender.map(
+            (listEntry, index)=><ExpenseItems key={listEntry.id}{...expenses[index]}/>)}
         </Card>
     )
 }
