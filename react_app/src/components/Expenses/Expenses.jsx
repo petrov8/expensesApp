@@ -2,7 +2,11 @@ import "./Expenses.css"
 import ExpenseItems from "./ExpenseItems.jsx"
 import Card from "../Shared/Card.jsx"
 
-function Expenses() {
+function Expenses(props) {
+
+  console.log("This is expenses")
+  console.log(props.extraExpenses)
+
     const expenses = [
         {
           id: 'e1',
