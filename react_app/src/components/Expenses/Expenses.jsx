@@ -11,18 +11,20 @@ function Expenses({items}) {
     const [selectedYear,  setSelectedYear] = useState("2024")
     const [itemsToRender, setItemsToRender] = useState(items)    
 
-    function yearFilterHandler(selectedYear){
-      setSelectedYear(selectedYear)
+    console.log(selectedYear)
+
+    function yearFilterHandler(year){
+      setSelectedYear(year)
 
         let filteredExpenses = items.filter(
-        (entry) => new Date(entry.date).getFullYear() == selectedYear)
+        (entry) => new Date(entry.date).getFullYear() == year)
         
         setItemsToRender(filteredExpenses.length > 0 ? filteredExpenses : items)
     }
 
     return (
         <Card className="expenses">
-            <ExpenesesFilter  onYearFilter={yearFilterHandler} year={selectedYear}/>
+            <ExpenesesFilter  onYearFilter={yearFilterHandler} currYear={selectedYear}/>
             {itemsToRender.map(
             (listEntry, index)=><ExpenseItems key={listEntry.id}{...items[index]}/>)}
         </Card>

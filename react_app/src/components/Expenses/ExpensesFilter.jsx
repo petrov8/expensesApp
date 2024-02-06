@@ -1,22 +1,16 @@
 import "./ExpensesFilter.css"
 
 
-function ExpensesFilter({onYearFilter, year}){
-
-    console.log(year)
+function ExpensesFilter({onYearFilter, currYear}){
 
     let currentYear = new Date().getFullYear()
-    let dropdownOptions = composeYearOptions(currentYear, 5)
-
-    function changeYearHandler(event){
-        onYearFilter(event.target.value)
-    }
+    let dropdownOptions = createDropdown(currentYear, 4)
 
     return (
         <div className='expenses-filter'>
         <div className='expenses-filter__control'>
           <label>Filter by year</label>
-          <select value={year} onChange={changeYearHandler}  >
+          <select value={currYear} onChange={(event) => onYearFilter(event.target.value)}  >
             {dropdownOptions}
           </select>
         </div>
@@ -25,16 +19,16 @@ function ExpensesFilter({onYearFilter, year}){
 }
 
 
-function composeYearOptions(startYear, numYears){
-    let yearsArray = []
+function createDropdown(start, end){
+    let options = []
 
-    for (let i=0; i<numYears; i++) {
-        yearsArray.push(
-            <option key={startYear-2000} value={startYear}>{startYear}</option>
+    for (let i=0; i<end; i++) {
+        options.push(
+            <option key={start-2000} value={start}>{start}</option>
         )
-        startYear -= 1
+        start -= 1
     }
-    return yearsArray
+    return options
 }
 
 
