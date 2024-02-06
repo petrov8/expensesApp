@@ -2,14 +2,14 @@ import "./NewExpense.css"
 
 import ExpenseForm from "./ExpenseForm.jsx"
 
-function NewExpense(props){
+function NewExpense({onNewExpenseData}){
 
     function saveExpenseHandler(newFormData){
         const expenseData = {
+            id: (Math.random() * 100 | 5).toString(),
             ...newFormData,
-            id: (Math.random() * 100 | 5).toString()
         }
-        props.onNewExpenseData(expenseData)
+        onNewExpenseData(expenseData)
     }
 
     return (
