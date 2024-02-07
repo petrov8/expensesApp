@@ -5,6 +5,8 @@ import { useState } from "react"
 
 function ExpenseItems({id, title, amount, date}) {
 
+    console.log(amount)
+
     const [itemName, setItemName] = useState(title)
 
     function clickHandler() {

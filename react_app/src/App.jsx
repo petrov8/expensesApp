@@ -28,18 +28,15 @@ let dummy_data = [
 
 function App() {
 
-
   const [expenses, setItems] = useState(dummy_data)
-
-  function newExpenseHandler(newExpenseData){
+  function newExpenseHandler(newExpense){
 
     setItems((prevExpenses) => {
-      return [newExpenseData, ...prevExpenses]
+      return [newExpense, ...prevExpenses] 
     })
   }
 
-
-
+  console.log(expenses)
   
   return (
     <div>

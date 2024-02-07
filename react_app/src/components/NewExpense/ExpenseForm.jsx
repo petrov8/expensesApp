@@ -25,8 +25,9 @@ function ExpenseForm({onSaveExpenseData}) {
 
         event.preventDefault()
         const formData = {
+            id: Math.floor(Math.random() * 100 +1),
             title: newTitle,
-            amnount: newAmount,
+            amount: parseFloat(newAmount),
             date: new Date(newDate)
         }
 
