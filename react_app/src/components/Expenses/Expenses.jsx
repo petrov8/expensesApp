@@ -9,6 +9,8 @@ function Expenses({items}) {
     
     const [selectedYear,  setSelectedYear] = useState("2024")
 
+    let expensesContent = <p color="white">No items for this year</p>
+
     function yearFilterHandler(year){
       setSelectedYear(year)
     }
@@ -17,11 +19,15 @@ function Expenses({items}) {
         (expense.date.getFullYear().toString() === selectedYear)
     )
 
+    if (filteredItems.length > 0){
+        expensesContent = filteredItems.map(
+            (listEntry, index)=><ExpenseItems key={listEntry.id}{...items[index]}/>)
+    } 
+
     return (
         <Card className="expenses">
             <ExpenesesFilter  onYearFilter={yearFilterHandler} currYear={selectedYear}/>
-            {filteredItems.map(
-            (listEntry, index)=><ExpenseItems key={listEntry.id}{...items[index]}/>)}
+            {expensesContent}
         </Card>
     )
 }
